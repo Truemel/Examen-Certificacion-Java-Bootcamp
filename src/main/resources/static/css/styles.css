@@ -5,3 +5,9 @@ body {
 h1 {
     color: red;
 }
+
+input {
+    background-color: white;
+    border-style: groove;
+    border-color: blue;
+}

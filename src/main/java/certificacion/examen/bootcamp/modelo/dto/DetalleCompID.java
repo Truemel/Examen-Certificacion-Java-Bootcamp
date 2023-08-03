@@ -2,7 +2,6 @@ package certificacion.examen.bootcamp.modelo.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Id;
 
 import java.io.Serializable;
 

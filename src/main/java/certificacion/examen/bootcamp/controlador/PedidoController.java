@@ -31,6 +31,6 @@ public class PedidoController {
     @PostMapping("/editar-pedido")
     public String editarPedido(@ModelAttribute Pedido ped){
         service.updatePedido(ped);
-        return "redirect://listar-pedido";
+        return "redirect:/pedido/listar-pedido";
     }
 }

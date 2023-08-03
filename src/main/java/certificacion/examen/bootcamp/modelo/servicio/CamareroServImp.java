@@ -5,7 +5,6 @@ import certificacion.examen.bootcamp.modelo.repository.CamareroRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CamareroServImp implements CamareroServ{
@@ -17,25 +16,28 @@ public class CamareroServImp implements CamareroServ{
     }
 
     @Override
-    public Optional<List<Camarero>> getCamareroList() {
-        return Optional.of(repo.findAll());
+    public List<Camarero> getCamareroList() {
+        return repo.findAll();
     }
 
     @Override
-    public Optional<Camarero> getCamareroById(int id) {
-        return repo.findById(id);
+    public Camarero getCamareroById(int id) {
+        if(repo.existsById(id)){
+            return repo.findById(id).get();
+        }
+        return null;
     }
 
     @Override
-    public Optional<Camarero> updateCamarero(Camarero cam) {
+    public Camarero updateCamarero(Camarero cam) {
         if(repo.existsById(cam.getId()))
-            return Optional.of(repo.save(cam));
-        return Optional.empty();
+            return repo.save(cam);
+        return null;
     }
 
     @Override
-    public Optional<Camarero> addCamarero(Camarero cam) {
-        return Optional.of(repo.save(cam));
+    public Camarero addCamarero(Camarero cam) {
+        return repo.save(cam);
     }
 
     @Override

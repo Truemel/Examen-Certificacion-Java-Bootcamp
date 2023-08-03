@@ -1,6 +1,5 @@
 package certificacion.examen.bootcamp.security;
 
-import jakarta.servlet.annotation.ServletSecurity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -28,10 +27,11 @@ public class SecurConfig {
 
     @Bean
     public SecurityFilterChain getFilterCh(HttpSecurity http) throws Exception{
-        http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(req ->
-                req.requestMatchers("/pedido/**").hasRole("USER")
-                        .requestMatchers("/", "/api/**", "/logout").permitAll())
-                .httpBasic(Customizer.withDefaults()).formLogin(login -> login.loginPage("/login").permitAll())
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(req -> req.requestMatchers("/pedido/**").hasRole("USER")
+                        .requestMatchers("/", "/api/**", "/logout", "/css/**").permitAll())
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(login -> login.loginPage("/login").permitAll())
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true)
                         .deleteCookies().permitAll());
 

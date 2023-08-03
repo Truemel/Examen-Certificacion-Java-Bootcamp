@@ -1,7 +1,6 @@
 package certificacion.examen.bootcamp.modelo.tools;
 
 import certificacion.examen.bootcamp.modelo.dto.Detalle;
-import certificacion.examen.bootcamp.modelo.dto.DetallePedido;
 import certificacion.examen.bootcamp.modelo.dto.Mesa;
 
 import java.util.ArrayList;

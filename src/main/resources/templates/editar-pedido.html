@@ -11,8 +11,29 @@
 <header>
     <div th:replace="~{menu :: navy}"></div>
 </header>
-<form class="form" method="post" th:action="@{/pedido/editar-pedido">
-
+<form class="form" method="post" th:action="@{/pedido/editar-pedido}">
+    <div th:each="p:${pedido}">
+        <input type="number" class="form-control" th:value="${p.getId()}" name="id" hidden="hidden">
+        <div class="mb-3">
+            <label for="idM" class="form-label">ID Mesa:</label>
+            <input type="number"  pattern="[1-9][0-9]*" class="form-control" th:value="${p.getMesaId()}" id="idM" placeholder="ID Mesa" name="mesaId">
+        </div>
+        <div class="mb-3">
+            <label for="idC" class="form-label">ID Camarero:</label>
+            <input type="number"  pattern="[1-9][0-9]*" class="form-control" th:value="${p.getCamaId()}" id="idC" placeholder="ID Camarero" name="camaId">
+        </div>
+        <div class="mb-3">
+            <label for="fec" class="form-label">Fecha:</label>
+            <input type="date" class="form-control" id="fec" placeholder="Fecha" name="fecha" th:value="${p.getFecha}">
+        </div>
+        <div class="mb-3">
+            <label for="tot" class="form-label">Total:</label>
+            <input type="number" class="form-control" id="tot" th:value="${p.getTotal()}" placeholder="Total" name="total">
+        </div>
+        <div class="rows">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </div>
 </form>
 </body>
 </html>

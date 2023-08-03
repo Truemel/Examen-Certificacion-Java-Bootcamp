@@ -1,12 +1,5 @@
 package certificacion.examen.bootcamp.modelo.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import java.sql.Date;
-
 public class PedidoCamarero {
 
     private Pedido pedido;

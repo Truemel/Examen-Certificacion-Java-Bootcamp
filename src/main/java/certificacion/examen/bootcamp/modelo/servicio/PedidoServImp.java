@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PedidoServImp implements PedidoServ{
@@ -21,25 +20,28 @@ public class PedidoServImp implements PedidoServ{
     }
 
     @Override
-    public Optional<List<Pedido>> getPedidoList() {
-        return Optional.of(repo.findAll());
+    public List<Pedido> getPedidoList() {
+        return repo.findAll();
     }
 
     @Override
-    public Optional<Pedido> getPedidoById(int id) {
-        return repo.findById(id);
+    public Pedido getPedidoById(int id) {
+        if(repo.existsById(id))
+            return repo.findById(id).get();
+        else
+            return null;
     }
 
     @Override
-    public Optional<Pedido> updatePedido(Pedido ped) {
+    public Pedido updatePedido(Pedido ped) {
         if(repo.existsById(ped.getId()))
-            return Optional.of(repo.save(ped));
-        return Optional.empty();
+            return repo.save(ped);
+        return null;
     }
 
     @Override
-    public Optional<Pedido> addPedido(Pedido ped) {
-        return Optional.of(repo.save(ped));
+    public Pedido addPedido(Pedido ped) {
+        return repo.save(ped);
     }
 
     @Override
@@ -52,15 +54,15 @@ public class PedidoServImp implements PedidoServ{
     }
 
     @Override
-    public Optional<List<PedidoCamarero>> getPedidoCamareroList() {
-        Optional<List<Pedido>> ped = getPedidoList();
-        if(ped.isPresent()){
+    public List<PedidoCamarero> getPedidoCamareroList() {
+        List<Pedido> ped = getPedidoList();
+        if(!ped.isEmpty()){
             ArrayList<PedidoCamarero> lista = new ArrayList<>();
-            for (int i = 0; i < ped.get().size(); i++){
-                lista.add(new PedidoCamarero(ped.get().get(i), camServ.getCamareroById(ped.get().get(i).getCamaId()).get()));
+            for (int i = 0; i < ped.size(); i++){
+                lista.add(new PedidoCamarero(ped.get(i), camServ.getCamareroById(ped.get(i).getCamaId())));
             }
-            return Optional.of(lista);
+            return lista;
         }
-        return Optional.empty();
+        return null;
     }
 }

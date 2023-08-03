@@ -25,6 +25,7 @@
             <th>Camarero</th>
             <th>Fecha</th>
             <th>Total</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +35,7 @@
             <td th:text="${p.getCamarero().getNombre()}"></td>
             <td th:text="${p.getPedido().getFecha()}"></td>
             <td th:text="${p.getPedido().getTotal()}"></td>
-            <td><a th:href="@{/pedido/editar-pedido/{id}(id=${p.getPedido().getId()}"><button class="btn btn-primary">Editar</button></a></td>
+            <td><a th:href="@{/pedido/editar-pedido/{id}(id=${p.getPedido().getId()})}"><button class="btn btn-primary">Editar</button></a></td>
         </tr>
     </tbody>
 </table>
