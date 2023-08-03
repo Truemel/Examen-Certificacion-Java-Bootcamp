@@ -1,15 +1,12 @@
 package certificacion.examen.bootcamp.modelo.dto;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "detalle_pedido")
 public class DetallePedido {
 
-    @Embedded
+    @EmbeddedId
     private DetalleCompID id;
     private int cantidad;
     private float subtotal;
